@@ -5,10 +5,14 @@
  * 301058465 Dohyun Kim
  */
 
+#pragma once
+
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "GameUtilities.h"
+#include "Weapon.cpp"
 
 /// A player object
 class Player
@@ -20,8 +24,22 @@ private:
     std::string username;
     Location location;
 
+    // Lab 2: added attributes
+    int avatar;
+    std::string player_type;
+    long spawnTime;
+    std::vector<Weapon> weapons;
+
 public:
-    Player(int id, int health, int mana, std::string username, Location location = {})
+    Player(
+        int id,
+        int health,
+        int mana,
+        std::string username,
+        Location location,
+        int avatar,
+        std::string type,
+        long spawnTime)
     {
         this->id = id;
         this->health = health;
@@ -44,4 +62,14 @@ public:
     {
         std::cout << "Player #" << this->id << " is attacking" << std::endl;
     }
+
+    // Lab 2: added methods
+
+    void moveTo(Location point)
+    {
+        std::cout << "Player #" << this->id << " is moving to: "
+            << point.x << ", " << point.y << ", " << point.z << std::endl;
+    }
+
+    long getSpawnTime() const { return this->spawnTime; }
 };

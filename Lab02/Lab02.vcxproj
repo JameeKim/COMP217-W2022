@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="Lab02.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameUtilities.h" />
