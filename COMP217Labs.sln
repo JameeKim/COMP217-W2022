@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab02", "Lab02\Lab02.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab03", "Lab03\Lab03.vcxproj", "{FE183F58-8416-4922-90DB-C47CC533CA7B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonsterGame", "MonsterGame\MonsterGame.vcxproj", "{7AD25911-4229-470A-B059-C0DC9413D78D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -58,5 +60,13 @@ Global
 		{FE183F58-8416-4922-90DB-C47CC533CA7B}.Release|Win32.Build.0 = Release|Win32
 		{FE183F58-8416-4922-90DB-C47CC533CA7B}.Release|x64.ActiveCfg = Release|x64
 		{FE183F58-8416-4922-90DB-C47CC533CA7B}.Release|x64.Build.0 = Release|x64
+		{7AD25911-4229-470A-B059-C0DC9413D78D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7AD25911-4229-470A-B059-C0DC9413D78D}.Debug|Win32.Build.0 = Debug|Win32
+		{7AD25911-4229-470A-B059-C0DC9413D78D}.Debug|x64.ActiveCfg = Debug|x64
+		{7AD25911-4229-470A-B059-C0DC9413D78D}.Debug|x64.Build.0 = Debug|x64
+		{7AD25911-4229-470A-B059-C0DC9413D78D}.Release|Win32.ActiveCfg = Release|Win32
+		{7AD25911-4229-470A-B059-C0DC9413D78D}.Release|Win32.Build.0 = Release|Win32
+		{7AD25911-4229-470A-B059-C0DC9413D78D}.Release|x64.ActiveCfg = Release|x64
+		{7AD25911-4229-470A-B059-C0DC9413D78D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal
