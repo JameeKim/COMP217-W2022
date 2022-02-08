@@ -153,16 +153,24 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <PropertyGroup>
+    <IncludePath>$(IncludePath);$(ProjectDir)</IncludePath>
+  </PropertyGroup>
   <ItemGroup>
-    <ClCompile Include="Daemon.cpp" />
     <ClCompile Include="MonsterGame.cpp" />
-    <ClCompile Include="RedDaemon.cpp" />
-    <ClCompile Include="VenomDaemon.cpp" />
+    <ClCompile Include="Daemon\Daemon.cpp" />
+    <ClCompile Include="Daemon\RedDaemon.cpp" />
+    <ClCompile Include="Daemon\VenomDaemon.cpp" />
+    <ClCompile Include="Player\Player.cpp" />
+    <ClCompile Include="Weapon\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Daemon.h" />
-    <ClInclude Include="RedDaemon.h" />
-    <ClInclude Include="VenomDaemon.h" />
+    <ClInclude Include="Daemon\Daemon.h" />
+    <ClInclude Include="Daemon\RedDaemon.h" />
+    <ClInclude Include="Daemon\VenomDaemon.h" />
+    <ClInclude Include="GameUtilities.h" />
+    <ClInclude Include="Player\Player.h" />
+    <ClInclude Include="Weapon\Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

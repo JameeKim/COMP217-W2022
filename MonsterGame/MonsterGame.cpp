@@ -7,9 +7,9 @@
 
 #include <vector>
 
-#include "Daemon.h"
-#include "RedDaemon.h"
-#include "VenomDaemon.h"
+#include "Daemon/Daemon.h"
+#include "Daemon/RedDaemon.h"
+#include "Daemon/VenomDaemon.h"
 
 using namespace std;
 
