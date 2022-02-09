@@ -15,6 +15,7 @@ private:
 
 public:
     Daemon(int health, int mana);
+    virtual ~Daemon() = default;
 
     int getHealth() const;
 

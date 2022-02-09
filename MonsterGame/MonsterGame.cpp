@@ -10,6 +10,7 @@
 #include "Daemon/Daemon.h"
 #include "Daemon/RedDaemon.h"
 #include "Daemon/VenomDaemon.h"
+#include "Player/Player.h"
 
 using namespace std;
 
@@ -21,6 +22,12 @@ int main(int argc, char* argv[])
 
     daemons[0]->attack();
     daemons[1]->attack();
+
+    // de-allocate objects
+    for (const Daemon* daemon : daemons)
+    {
+        delete daemon;
+    }
 
     return 0;
 }

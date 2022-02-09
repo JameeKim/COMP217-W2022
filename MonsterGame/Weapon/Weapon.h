@@ -13,14 +13,19 @@
 class Weapon
 {
 private:
+    std::string weaponType;
     std::string name;
-    int maxNumBullets;
-    int numBullets;
-    float damage;
+
+    int maxAmmo;
+    int currentAmmo;
+    int damage;
 
 public:
-    Weapon(std::string name, int maxNumBullets, int numBullets, float damage);
+    Weapon(std::string name, int maxAmmo, int currentAmmo, int damage);
+    virtual ~Weapon() = default;
 
-    void fire();
+    bool hasAmmo() const { return this->currentAmmo > 0; }
+
+    virtual void fire();
     void reload();
 };

@@ -11,14 +11,12 @@
 
 using namespace std;
 
-Weapon::Weapon(string name, int maxNumBullets, int numBullets, float damage)
+Weapon::Weapon(string name, int maxAmmo, int currentAmmo, int damage)
 {
     this->name = name;
-    this->maxNumBullets = maxNumBullets;
-    this->numBullets = numBullets;
+    this->maxAmmo = maxAmmo;
+    this->currentAmmo = currentAmmo;
     this->damage = damage;
-
-    cout << "Weapon " << this->name << " has been created" << endl;
 }
 
 void Weapon::fire()
@@ -28,5 +26,5 @@ void Weapon::fire()
 
 void Weapon::reload()
 {
-    cout << "Weapon " << this->name << " is reloaded" << endl;
+    this->currentAmmo = this->maxAmmo;
 }

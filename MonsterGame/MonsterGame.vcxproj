@@ -162,6 +162,7 @@
     <ClCompile Include="Daemon\RedDaemon.cpp" />
     <ClCompile Include="Daemon\VenomDaemon.cpp" />
     <ClCompile Include="Player\Player.cpp" />
+    <ClCompile Include="Player\Queen.cpp" />
     <ClCompile Include="Weapon\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +171,7 @@
     <ClInclude Include="Daemon\VenomDaemon.h" />
     <ClInclude Include="GameUtilities.h" />
     <ClInclude Include="Player\Player.h" />
+    <ClInclude Include="Player\Queen.h" />
     <ClInclude Include="Weapon\Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
