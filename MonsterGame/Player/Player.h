@@ -12,7 +12,9 @@
 #include "GameUtilities.h"
 #include "Weapon/Weapon.h"
 
-/// A player object
+/**
+ * A player object
+ */
 class Player
 {
 protected:
@@ -37,7 +39,7 @@ public:
         int mana,
         std::vector<Weapon*> weapons = std::vector<Weapon*>(3),
         const Location& location = {});
-    virtual ~Player();
+    virtual ~Player() = 0;
 
     int getId() const { return this->id; }
     int getHealth() const { return this->health; }
@@ -52,7 +54,17 @@ public:
 
     void addWeapon(Weapon* weapon);
     /**
-     * Swap the current active weapon to the given weapon and return the previously active weapon
+     * Swap the current active weapon to the given weapon and return the
+     * previously active weapon
      */
     Weapon* swapWeapon(Weapon* weapon);
+
+protected:
+    void printTypeAndId() const;
+
+private:
+    /**
+     * Check if the given weapon is owned by the player
+     */
+    bool hasWeapon(const Weapon* weapon) const;
 };

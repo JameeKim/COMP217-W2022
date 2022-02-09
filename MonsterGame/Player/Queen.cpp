@@ -7,24 +7,29 @@
 
 #include "Queen.h"
 
+#include <iostream>
+
 Queen::Queen(
     int id,
-    const std::string& username,
+    std::string username,
     int health,
     int mana,
-    const std::vector<Weapon*>& weapons,
+    std::vector<Weapon*> weapons,
     const Location& location)
-    : Player(id, username, health, mana, weapons, location)
+    : Player(
+        id,
+        std::move(username),
+        health,
+        mana,
+        std::move(weapons),
+        location)
 {
     this->playerType = "Queen";
 }
 
-Queen::~Queen()
-{
-}
-
 void Queen::move(const Location& amount)
 {
-    // TODO
     Player::move(amount);
+    this->printTypeAndId();
+    std::cout << " moves with with spare" << std::endl;
 }

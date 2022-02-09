@@ -8,29 +8,29 @@
 #include <iostream>
 #include <vector>
 
-#include "Daemon/Daemon.h"
-#include "Daemon/RedDaemon.h"
-#include "Daemon/VenomDaemon.h"
+#include "Player/Player.h"
+#include "Player/Queen.h"
 
-#include "Week05.h"
+constexpr size_t NUM_PLAYERS = 5;
 
 int main(int argc, char* argv[])
 {
-    std::vector<Daemon*> daemons;
-    daemons.push_back(new RedDaemon(10, 10, 1));
-    daemons.push_back(new VenomDaemon(5, 10, 3));
+    std::vector<Player*> players = std::vector<Player*>(NUM_PLAYERS);
+    for (int i = 0; i < NUM_PLAYERS; ++i)
+    {
+        players.push_back(new Queen(i + 1, "jameekim", 10, 10));
+    }
 
-    daemons[0]->attack();
-    daemons[1]->attack();
-
-    fileIO();
-    fileCursor();
-    writeBlock();
+    // move
+    for (Player* player : players)
+    {
+        player->move();
+    }
 
     // de-allocate objects
-    for (const Daemon* daemon : daemons)
+    for (const Player* player : players)
     {
-        delete daemon;
+        delete player;
     }
 
     return 0;

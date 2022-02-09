@@ -9,16 +9,16 @@
 
 #include "Player.h"
 
-using namespace std;
-
 Player::Player(
     const int id,
-    string username,
+    std::string username,
     const int health,
     const int mana,
-    vector<Weapon*> weapons,
+    std::vector<Weapon*> weapons,
     const Location& location)
 {
+    this->playerType = "Player";
+
     this->id = id;
     this->username = std::move(username);
     this->location = location;
@@ -42,13 +42,15 @@ void Player::attack()
 {
     if (!this->currentWeapon)
     {
-        cout << this->playerType << " #" << this->id << " does not have any weapon" << endl;
+        this->printTypeAndId();
+        std::cout << " does not have any weapon" << std::endl;
         return;
     }
 
     if (this->currentWeapon->hasAmmo())
     {
-        cout << this->playerType << " #" << this->id << " attacks" << endl;
+        this->printTypeAndId();
+        std::cout << " attacks" << std::endl;
         this->currentWeapon->fire();
     }
 }
@@ -65,11 +67,9 @@ void Player::addWeapon(Weapon* weapon)
 
 Weapon* Player::swapWeapon(Weapon* weapon)
 {
-    // check if the weapon is owned by the player
-    const std::vector<Weapon*>::iterator it = find(this->weapons.begin(), this->weapons.end(), weapon);
-    if (it == this->weapons.end())
+    // do nothing if the weapon is not found
+    if (!this->hasWeapon(weapon))
     {
-        // do nothing if the weapon is not found
         return nullptr;
     }
 
@@ -77,4 +77,15 @@ Weapon* Player::swapWeapon(Weapon* weapon)
     Weapon* previousWeapon = this->currentWeapon;
     this->currentWeapon = weapon;
     return previousWeapon;
+}
+
+void Player::printTypeAndId() const
+{
+    std::cout << this->playerType << " #" << this->id;
+}
+
+bool Player::hasWeapon(const Weapon* weapon) const
+{
+    const auto it = find(this->weapons.begin(), this->weapons.end(), weapon);
+    return it != this->weapons.end();
 }

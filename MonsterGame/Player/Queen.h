@@ -14,12 +14,12 @@ class Queen : public Player
 public:
     Queen(
         int id,
-        const std::string& username,
+        std::string username,
         int health,
         int mana,
-        const std::vector<Weapon*>& weapons = std::vector<Weapon*>(3),
+        std::vector<Weapon*> weapons = std::vector<Weapon*>(3),
         const Location& location = {});
-    ~Queen() override;
+    ~Queen() override {}
 
     void move(const Location& amount) override;
 };

@@ -9,7 +9,9 @@
 
 #include <string>
 
-/// A weapon object
+/**
+ * A weapon object
+ */
 class Weapon
 {
 private:
