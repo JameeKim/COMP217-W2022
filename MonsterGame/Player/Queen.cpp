@@ -22,3 +22,9 @@ Queen::Queen(
 Queen::~Queen()
 {
 }
+
+void Queen::move(const Location& amount)
+{
+    // TODO
+    Player::move(amount);
+}

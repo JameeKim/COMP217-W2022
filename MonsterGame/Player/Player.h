@@ -15,8 +15,10 @@
 /// A player object
 class Player
 {
-private:
+protected:
     std::string playerType;
+
+private:
     int id;
     std::string username;
     Location location;
