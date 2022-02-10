@@ -238,6 +238,7 @@
     <ClCompile Include="Player\PlayerFactory.cpp" />
     <ClCompile Include="Player\Queen.cpp" />
     <ClCompile Include="Player\Witch.cpp" />
+    <ClCompile Include="Team.cpp" />
     <ClCompile Include="Weapon\EnergyOrb.cpp" />
     <ClCompile Include="Weapon\MagicWand.cpp" />
     <ClCompile Include="Weapon\RoyalGun.cpp" />
@@ -254,6 +255,7 @@
     <ClInclude Include="Player\PlayerFactory.h" />
     <ClInclude Include="Player\Queen.h" />
     <ClInclude Include="Player\Witch.h" />
+    <ClInclude Include="Team.h" />
     <ClInclude Include="Weapon\EnergyOrb.h" />
     <ClInclude Include="Weapon\MagicWand.h" />
     <ClInclude Include="Weapon\RoyalGun.h" />

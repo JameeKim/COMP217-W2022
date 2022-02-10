@@ -56,7 +56,7 @@ public:
     /**
      * Activate current weapon
      */
-    void attack();
+    void attack() const;
     /**
      * Change the location and perform unique moves for each type (subclass)
      */

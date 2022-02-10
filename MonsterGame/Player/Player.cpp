@@ -33,7 +33,7 @@ Player::~Player()
     }
 }
 
-void Player::attack()
+void Player::attack() const
 {
     printTypeAndId();
     std::cout << " attempts an attack" << std::endl << "  ";

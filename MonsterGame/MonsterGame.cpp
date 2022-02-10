@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 
+#include "Team.h"
 #include "Player/Player.h"
 #include "Player/PlayerFactory.h"
 
@@ -15,23 +16,26 @@ constexpr size_t NUM_PLAYERS = 10;
 
 int main(int argc, char* argv[])
 {
-    std::vector<Player*> players = std::vector<Player*>(NUM_PLAYERS);
-    for (int i = 0; i < NUM_PLAYERS; ++i)
-    {
-        players[i] = generateRandomPlayer(i + 1);
-    }
+    // std::vector<Player*> players = std::vector<Player*>(NUM_PLAYERS);
+    // for (int i = 0; i < NUM_PLAYERS; ++i)
+    // {
+    //     players[i] = generateRandomPlayer(i + 1);
+    // }
+    //
+    // // move
+    // for (Player* player : players)
+    // {
+    //     player->attack();
+    // }
+    //
+    // // de-allocate objects
+    // for (const Player* player : players)
+    // {
+    //     delete player;
+    // }
 
-    // move
-    for (Player* player : players)
-    {
-        player->attack();
-    }
-
-    // de-allocate objects
-    for (const Player* player : players)
-    {
-        delete player;
-    }
+    const Team team = Team(10);
+    team.attack();
 
     return 0;
 }

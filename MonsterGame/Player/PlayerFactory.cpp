@@ -63,8 +63,12 @@ typedef Player* (*player_factory)(int id, int health, int mana);
     Player* make##PType(const int id, const int health, const int mana) \
     { \
         PType* player = new PType(id, health, mana); \
-        int weaponIdx = randomInt(-1, PType##_WEAPONS_SIZE); \
-        if (weaponIdx > -1) PType##_WEAPONS[weaponIdx](player); \
+        /* Add a weapon 80% of the time */ \
+        if (randomInt(0, 5) > 0) \
+        { \
+            int weaponIdx = randomInt(0, PType##_WEAPONS_SIZE); \
+            PType##_WEAPONS[weaponIdx](player); \
+        } \
         return player; \
     }
 
