@@ -7,10 +7,12 @@
 
 #pragma once
 
+#include <string>
 #include <vector>
 
 #include "GameUtilities.h"
-#include "Weapon/Weapon.h"
+
+class Weapon;
 
 /**
  * A player object
@@ -21,7 +23,7 @@ protected:
     std::string playerType;
 
 private:
-    int id;
+    const int id;
     Location location;
 
     int health;
@@ -35,20 +37,33 @@ public:
         int id,
         int health,
         int mana,
-        std::vector<Weapon*> weapons = {},
         const Location& location = {});
     virtual ~Player() = 0;
 
+    // getters
+    const std::string& getPlayerType() const { return playerType; }
     int getId() const { return id; }
+    const Location& getLocation() const { return location; }
     int getHealth() const { return health; }
     int getMana() const { return mana; }
-    const Location& getLocation() const { return location; }
     const std::vector<Weapon*>& getWeapons() const { return weapons; }
+    Weapon* getCurrentWeapon() const { return currentWeapon; }
 
+    // computed value getters
     bool isAlive() const { return health > 0; }
-    void attack();
-    virtual void move(const Location& amount = {});
 
+    // action methods
+    /**
+     * Activate current weapon
+     */
+    void attack();
+    /**
+     * Change the location and perform unique moves for each type (subclass)
+     */
+    virtual void move(const Location& amount = {});
+    /**
+     * Add the given weapon to the list of weapons the player possesses
+     */
     void addWeapon(Weapon* weapon);
     /**
      * Swap the current active weapon to the given weapon and return the
@@ -58,6 +73,7 @@ public:
 
 protected:
     void printTypeAndId() const;
+    virtual void actionWhenNoWeapon() const = 0;
 
 private:
     /**

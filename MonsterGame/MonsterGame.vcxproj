@@ -238,6 +238,9 @@
     <ClCompile Include="Player\PlayerFactory.cpp" />
     <ClCompile Include="Player\Queen.cpp" />
     <ClCompile Include="Player\Witch.cpp" />
+    <ClCompile Include="Weapon\EnergyOrb.cpp" />
+    <ClCompile Include="Weapon\MagicWand.cpp" />
+    <ClCompile Include="Weapon\RoyalGun.cpp" />
     <ClCompile Include="Weapon\Weapon.cpp" />
     <ClCompile Include="Week05.cpp" />
   </ItemGroup>
@@ -251,6 +254,9 @@
     <ClInclude Include="Player\PlayerFactory.h" />
     <ClInclude Include="Player\Queen.h" />
     <ClInclude Include="Player\Witch.h" />
+    <ClInclude Include="Weapon\EnergyOrb.h" />
+    <ClInclude Include="Weapon\MagicWand.h" />
+    <ClInclude Include="Weapon\RoyalGun.h" />
     <ClInclude Include="Weapon\Weapon.h" />
     <ClInclude Include="Week05.h" />
   </ItemGroup>

@@ -16,9 +16,11 @@ public:
         int id,
         int health,
         int mana,
-        std::vector<Weapon*> weapons = {},
         const Location& location = {});
     ~Queen() override {}
 
     void move(const Location& amount = {}) override;
+
+protected:
+    void actionWhenNoWeapon() const override;
 };

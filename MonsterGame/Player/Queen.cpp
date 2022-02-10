@@ -13,13 +13,11 @@ Queen::Queen(
     const int id,
     const int health,
     const int mana,
-    std::vector<Weapon*> weapons,
     const Location& location)
     : Player(
         id,
         health,
         mana,
-        std::move(weapons),
         location)
 {
     playerType = "Queen";
@@ -30,4 +28,10 @@ void Queen::move(const Location& amount)
     Player::move(amount);
     printTypeAndId();
     std::cout << " moves with with spare" << std::endl;
+}
+
+void Queen::actionWhenNoWeapon() const
+{
+    printTypeAndId();
+    std::cout << " prepares to guard oneself" << std::endl;
 }

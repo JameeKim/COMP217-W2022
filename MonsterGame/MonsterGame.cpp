@@ -11,7 +11,7 @@
 #include "Player/Player.h"
 #include "Player/PlayerFactory.h"
 
-constexpr size_t NUM_PLAYERS = 5;
+constexpr size_t NUM_PLAYERS = 10;
 
 int main(int argc, char* argv[])
 {
@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     // move
     for (Player* player : players)
     {
-        player->move();
+        player->attack();
     }
 
     // de-allocate objects

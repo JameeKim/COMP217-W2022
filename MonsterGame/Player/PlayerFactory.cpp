@@ -7,52 +7,84 @@
 
 #include "PlayerFactory.h"
 
-#include <functional>
 #include <random>
 
 #include "Monk.h"
+#include "Player.h"
 #include "Queen.h"
 #include "Witch.h"
+#include "Weapon/EnergyOrb.h"
+#include "Weapon/MagicWand.h"
+#include "Weapon/RoyalGun.h"
 
 /**
- * Macro for creating lambdas that call constructors of Player subclasses
+ * Generate a random integer in the range of [min, max) using a randomly
+ * generated float value in the range of [0, 1)
  */
-#define PLAYER_CREATOR(Type) \
-    Player* make##Type(const int id, const int health, const int mana) \
-    { return new Type(id, health, mana); }
+int randomInt(const int min, const int max)
+{
+    static std::random_device r;
+    static std::default_random_engine rng(r());
+    static std::uniform_real_distribution<float> random;
+    return static_cast<int>(random(rng) * (max - min)) + min;
+}
 
 /**
- * Number of player types
+ * The type of the functions for adding a weapon to a player
  */
-constexpr size_t NUM_TYPES = 3;
-
-// define the functions
-PLAYER_CREATOR(Queen);
-PLAYER_CREATOR(Witch);
-PLAYER_CREATOR(Monk);
+typedef void (*weapon_appender)(Player* player);
 
 /**
  * The type of the functions for creating a player object
  */
-typedef Player* (*player_constructor)(int id, int health, int mana);
+typedef Player* (*player_factory)(int id, int health, int mana);
+
+/**
+ * Macro for creating a compile-time constant list along with its size
+ */
+#define CREATE_LIST(Type, Name, ...) \
+    constexpr Type Name[] { __VA_ARGS__ }; \
+    constexpr int Name##_SIZE = static_cast<int>(sizeof Name / sizeof Type);
+
+/**
+ * Macro for creating functions that add a weapon to a player
+ */
+#define WEAPON_CREATOR(WType, MaxAmmo, Damage) \
+    void add##WType(Player* player) \
+    { \
+        player->addWeapon(new WType(MaxAmmo, randomInt(0, MaxAmmo), Damage)); \
+    }
+
+/**
+ * Macro for creating functions that call constructors of Player subclasses
+ */
+#define PLAYER_CREATOR(PType, ...) \
+    CREATE_LIST(weapon_appender, PType##_WEAPONS, __VA_ARGS__); \
+    Player* make##PType(const int id, const int health, const int mana) \
+    { \
+        PType* player = new PType(id, health, mana); \
+        int weaponIdx = randomInt(-1, PType##_WEAPONS_SIZE); \
+        if (weaponIdx > -1) PType##_WEAPONS[weaponIdx](player); \
+        return player; \
+    }
+
+// define weapons
+WEAPON_CREATOR(RoyalGun, 6, 2);
+WEAPON_CREATOR(MagicWand, 3, 3);
+WEAPON_CREATOR(EnergyOrb, 1, 8);
+
+// define player types with available weapons
+PLAYER_CREATOR(Queen, &addRoyalGun);
+PLAYER_CREATOR(Witch, &addMagicWand);
+PLAYER_CREATOR(Monk, &addEnergyOrb);
 
 /**
  * List of functions that can create a player object
  */
-constexpr player_constructor PLAYER_CONSTRUCTORS[NUM_TYPES] {
-    &makeQueen,
-    &makeWitch,
-    &makeMonk,
-};
-
-// RNG variables
-std::default_random_engine rng;
-std::uniform_int_distribution<int> playerTypeDist(0, NUM_TYPES - 1);
-std::uniform_int_distribution<int> attrDist(10, 20);
-auto playerType = std::bind(playerTypeDist, rng);
-auto attr = std::bind(attrDist, rng);
+CREATE_LIST(player_factory, PLAYER_TYPES, &makeQueen, &makeWitch, &makeMonk);
 
 Player* generateRandomPlayer(const int id)
 {
-    return PLAYER_CONSTRUCTORS[playerType()](id, attr(), attr());
+    const player_factory cons = PLAYER_TYPES[randomInt(0, PLAYER_TYPES_SIZE)];
+    return cons(id, randomInt(10, 21), randomInt(10, 21));
 }

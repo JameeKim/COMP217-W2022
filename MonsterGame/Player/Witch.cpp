@@ -13,13 +13,11 @@ Witch::Witch(
     const int id,
     const int health,
     const int mana,
-    std::vector<Weapon*> weapons,
     const Location& location)
     : Player(
         id,
         health,
         mana,
-        std::move(weapons),
         location)
 {
     playerType = "Witch";
@@ -30,4 +28,10 @@ void Witch::move(const Location& amount)
     Player::move(amount);
     printTypeAndId();
     std::cout << " flies" << std::endl;
+}
+
+void Witch::actionWhenNoWeapon() const
+{
+    printTypeAndId();
+    std::cout << " goes poof and disappears" << std::endl;
 }

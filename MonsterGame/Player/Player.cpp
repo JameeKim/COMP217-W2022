@@ -9,19 +9,19 @@
 
 #include "Player.h"
 
+#include "Weapon/Weapon.h"
+
 Player::Player(
     const int id,
     const int health,
     const int mana,
-    std::vector<Weapon*> weapons,
     const Location& location)
     : playerType("Player"),
       id(id),
       location(location),
       health(health),
       mana(mana),
-      weapons(std::move(weapons)),
-      currentWeapon(weapons.size() > 0 ? weapons[0] : nullptr)
+      currentWeapon(nullptr)
 {
 }
 
@@ -35,19 +35,23 @@ Player::~Player()
 
 void Player::attack()
 {
+    printTypeAndId();
+    std::cout << " attempts an attack" << std::endl << "  ";
+
     if (!currentWeapon)
     {
-        printTypeAndId();
-        std::cout << " does not have any weapon" << std::endl;
+        std::cout << "Fail: no weapon found" << std::endl << "  ";
+        actionWhenNoWeapon();
         return;
     }
 
-    if (currentWeapon->hasAmmo())
-    {
-        printTypeAndId();
-        std::cout << " attacks" << std::endl;
-        currentWeapon->fire();
-    }
+    std::cout << "Currently holding ";
+    currentWeapon->printName();
+    std::cout << std::endl << "  ";
+
+    // the check for ammo is done in Weapon::fire so that it can display
+    // appropriate messages depending on its type
+    currentWeapon->fire();
 }
 
 void Player::move(const Location& amount)
@@ -58,12 +62,18 @@ void Player::move(const Location& amount)
 void Player::addWeapon(Weapon* weapon)
 {
     weapons.push_back(weapon);
+
+    // set the weapon as active if the player didn't have any before
+    if (weapons.size() == 1)
+    {
+        currentWeapon = weapon;
+    }
 }
 
 Weapon* Player::swapWeapon(Weapon* weapon)
 {
-    // do nothing if the weapon is not found
-    if (!hasWeapon(weapon))
+    // do nothing if a weapon is given but not found
+    if (weapon && !hasWeapon(weapon))
     {
         return nullptr;
     }

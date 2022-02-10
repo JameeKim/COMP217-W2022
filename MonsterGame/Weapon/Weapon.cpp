@@ -14,8 +14,7 @@ Weapon::Weapon(
     const int maxAmmo,
     const int currentAmmo,
     const int damage)
-    : weaponType("Weapon"),
-      name(std::move(name)),
+    : name(std::move(name)),
       maxAmmo(maxAmmo),
       currentAmmo(currentAmmo),
       damage(damage)
@@ -24,14 +23,27 @@ Weapon::Weapon(
 
 void Weapon::fire()
 {
+    printName();
+
     if (hasAmmo())
     {
         currentAmmo -= 1;
+        std::cout << " is fired" << std::endl;
     }
-    std::cout << weaponType << " \"" << name << "\" is fired" << std::endl;
+    else
+    {
+        std::cout << " is out of ammo" << std::endl;
+    }
 }
 
 void Weapon::reload()
 {
     currentAmmo = maxAmmo;
+    printName();
+    std::cout << " is reloaded: fully charged at " << currentAmmo << std::endl;
+}
+
+void Weapon::printName() const
+{
+    std::cout << "Weapon \"" << name << "\"";
 }

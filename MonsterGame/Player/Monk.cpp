@@ -13,13 +13,11 @@ Monk::Monk(
     const int id,
     const int health,
     const int mana,
-    std::vector<Weapon*> weapons,
     const Location& location)
     : Player(
         id,
         health,
         mana,
-        std::move(weapons),
         location)
 {
     playerType = "Monk";
@@ -30,4 +28,10 @@ void Monk::move(const Location& amount)
     Player::move(amount);
     printTypeAndId();
     std::cout << " moves as a spirit" << std::endl;
+}
+
+void Monk::actionWhenNoWeapon() const
+{
+    printTypeAndId();
+    std::cout << " hides like a wind" << std::endl;
 }
