@@ -22,7 +22,6 @@ protected:
 
 private:
     int id;
-    std::string username;
     Location location;
 
     int health;
@@ -34,7 +33,6 @@ private:
 public:
     Player(
         int id,
-        std::string username,
         int health,
         int mana,
         std::vector<Weapon*> weapons = std::vector<Weapon*>(3),
@@ -44,7 +42,6 @@ public:
     int getId() const { return this->id; }
     int getHealth() const { return this->health; }
     int getMana() const { return this->mana; }
-    const std::string& getUsername() { return this->username; }
     const Location& getLocation() const { return this->location; }
     const std::vector<Weapon*>& getWeapons() const { return this->weapons; }
 

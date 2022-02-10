@@ -5,11 +5,11 @@
  * 301058465 Dohyun Kim
  */
 
-#include "Queen.h"
+#include "Monk.h"
 
 #include <iostream>
 
-Queen::Queen(
+Monk::Monk(
     const int id,
     const int health,
     const int mana,
@@ -22,12 +22,12 @@ Queen::Queen(
         std::move(weapons),
         location)
 {
-    this->playerType = "Queen";
+    this->playerType = "Monk";
 }
 
-void Queen::move(const Location& amount)
+void Monk::move(const Location& amount)
 {
     Player::move(amount);
     this->printTypeAndId();
-    std::cout << " moves with with spare" << std::endl;
+    std::cout << " moves as a spirit" << std::endl;
 }

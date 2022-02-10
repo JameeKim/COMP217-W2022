@@ -11,7 +11,6 @@
 
 Player::Player(
     const int id,
-    std::string username,
     const int health,
     const int mana,
     std::vector<Weapon*> weapons,
@@ -20,7 +19,6 @@ Player::Player(
     this->playerType = "Player";
 
     this->id = id;
-    this->username = std::move(username);
     this->location = location;
 
     this->health = health;

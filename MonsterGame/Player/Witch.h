@@ -9,16 +9,16 @@
 
 #include "Player.h"
 
-class Queen : public Player
+class Witch : public Player
 {
 public:
-    Queen(
+    Witch(
         int id,
         int health,
         int mana,
         std::vector<Weapon*> weapons = std::vector<Weapon*>(3),
         const Location& location = {});
-    ~Queen() override {}
+    ~Witch() override {}
 
     void move(const Location& amount) override;
 };

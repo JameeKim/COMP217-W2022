@@ -13,6 +13,7 @@ using namespace std;
 
 Weapon::Weapon(string name, int maxAmmo, int currentAmmo, int damage)
 {
+    this->weaponType = "Weapon";
     this->name = name;
     this->maxAmmo = maxAmmo;
     this->currentAmmo = currentAmmo;
@@ -21,7 +22,7 @@ Weapon::Weapon(string name, int maxAmmo, int currentAmmo, int damage)
 
 void Weapon::fire()
 {
-    cout << "Weapon " << this->name << " is fired" << endl;
+    cout << this->weaponType << " " << this->name << " is fired" << endl;
 }
 
 void Weapon::reload()

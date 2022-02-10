@@ -9,7 +9,7 @@
 #include <vector>
 
 #include "Player/Player.h"
-#include "Player/Queen.h"
+#include "Player/PlayerFactory.h"
 
 constexpr size_t NUM_PLAYERS = 5;
 
@@ -18,7 +18,8 @@ int main(int argc, char* argv[])
     std::vector<Player*> players = std::vector<Player*>(NUM_PLAYERS);
     for (int i = 0; i < NUM_PLAYERS; ++i)
     {
-        players.push_back(new Queen(i + 1, "jameekim", 10, 10));
+        std::cout << "Creating player #" << i + 1 << std::endl;
+        players[i] = generateRandomPlayer(i + 1);
     }
 
     // move
