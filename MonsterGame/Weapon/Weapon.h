@@ -26,7 +26,7 @@ public:
     Weapon(std::string name, int maxAmmo, int currentAmmo, int damage);
     virtual ~Weapon() = default;
 
-    bool hasAmmo() const { return this->currentAmmo > 0; }
+    bool hasAmmo() const { return currentAmmo > 0; }
 
     virtual void fire();
     void reload();

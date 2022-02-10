@@ -16,7 +16,7 @@ public:
         int id,
         int health,
         int mana,
-        std::vector<Weapon*> weapons = std::vector<Weapon*>(3),
+        std::vector<Weapon*> weapons = {},
         const Location& location = {});
     ~Monk() override {}
 

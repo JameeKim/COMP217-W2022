@@ -15,22 +15,19 @@ Player::Player(
     const int mana,
     std::vector<Weapon*> weapons,
     const Location& location)
+    : playerType("Player"),
+      id(id),
+      location(location),
+      health(health),
+      mana(mana),
+      weapons(std::move(weapons)),
+      currentWeapon(weapons.size() > 0 ? weapons[0] : nullptr)
 {
-    this->playerType = "Player";
-
-    this->id = id;
-    this->location = location;
-
-    this->health = health;
-    this->mana = mana;
-
-    this->weapons = std::move(weapons);
-    this->currentWeapon = weapons.size() > 0 ? weapons[0] : nullptr;
 }
 
 Player::~Player()
 {
-    for (const Weapon* weapon : this->weapons)
+    for (const Weapon* weapon : weapons)
     {
         delete weapon;
     }
@@ -38,24 +35,24 @@ Player::~Player()
 
 void Player::attack()
 {
-    if (!this->currentWeapon)
+    if (!currentWeapon)
     {
-        this->printTypeAndId();
+        printTypeAndId();
         std::cout << " does not have any weapon" << std::endl;
         return;
     }
 
-    if (this->currentWeapon->hasAmmo())
+    if (currentWeapon->hasAmmo())
     {
-        this->printTypeAndId();
+        printTypeAndId();
         std::cout << " attacks" << std::endl;
-        this->currentWeapon->fire();
+        currentWeapon->fire();
     }
 }
 
 void Player::move(const Location& amount)
 {
-    this->location += amount;
+    location += amount;
 }
 
 void Player::addWeapon(Weapon* weapon)
@@ -66,24 +63,24 @@ void Player::addWeapon(Weapon* weapon)
 Weapon* Player::swapWeapon(Weapon* weapon)
 {
     // do nothing if the weapon is not found
-    if (!this->hasWeapon(weapon))
+    if (!hasWeapon(weapon))
     {
         return nullptr;
     }
 
     // swap the weapons
-    Weapon* previousWeapon = this->currentWeapon;
-    this->currentWeapon = weapon;
+    Weapon* previousWeapon = currentWeapon;
+    currentWeapon = weapon;
     return previousWeapon;
 }
 
 void Player::printTypeAndId() const
 {
-    std::cout << this->playerType << " #" << this->id;
+    std::cout << playerType << " #" << id;
 }
 
 bool Player::hasWeapon(const Weapon* weapon) const
 {
-    const auto it = find(this->weapons.begin(), this->weapons.end(), weapon);
-    return it != this->weapons.end();
+    const auto it = find(weapons.begin(), weapons.end(), weapon);
+    return it != weapons.end();
 }

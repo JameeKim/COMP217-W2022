@@ -9,23 +9,29 @@
 
 #include <iostream>
 
-using namespace std;
-
-Weapon::Weapon(string name, int maxAmmo, int currentAmmo, int damage)
+Weapon::Weapon(
+    std::string name,
+    const int maxAmmo,
+    const int currentAmmo,
+    const int damage)
+    : weaponType("Weapon"),
+      name(std::move(name)),
+      maxAmmo(maxAmmo),
+      currentAmmo(currentAmmo),
+      damage(damage)
 {
-    this->weaponType = "Weapon";
-    this->name = name;
-    this->maxAmmo = maxAmmo;
-    this->currentAmmo = currentAmmo;
-    this->damage = damage;
 }
 
 void Weapon::fire()
 {
-    cout << this->weaponType << " " << this->name << " is fired" << endl;
+    if (hasAmmo())
+    {
+        currentAmmo -= 1;
+    }
+    std::cout << weaponType << " \"" << name << "\" is fired" << std::endl;
 }
 
 void Weapon::reload()
 {
-    this->currentAmmo = this->maxAmmo;
+    currentAmmo = maxAmmo;
 }

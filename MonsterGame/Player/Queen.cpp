@@ -22,12 +22,12 @@ Queen::Queen(
         std::move(weapons),
         location)
 {
-    this->playerType = "Queen";
+    playerType = "Queen";
 }
 
 void Queen::move(const Location& amount)
 {
     Player::move(amount);
-    this->printTypeAndId();
+    printTypeAndId();
     std::cout << " moves with with spare" << std::endl;
 }

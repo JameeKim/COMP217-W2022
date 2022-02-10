@@ -35,17 +35,17 @@ public:
         int id,
         int health,
         int mana,
-        std::vector<Weapon*> weapons = std::vector<Weapon*>(3),
+        std::vector<Weapon*> weapons = {},
         const Location& location = {});
     virtual ~Player() = 0;
 
-    int getId() const { return this->id; }
-    int getHealth() const { return this->health; }
-    int getMana() const { return this->mana; }
-    const Location& getLocation() const { return this->location; }
-    const std::vector<Weapon*>& getWeapons() const { return this->weapons; }
+    int getId() const { return id; }
+    int getHealth() const { return health; }
+    int getMana() const { return mana; }
+    const Location& getLocation() const { return location; }
+    const std::vector<Weapon*>& getWeapons() const { return weapons; }
 
-    bool isAlive() const { return this->health > 0; }
+    bool isAlive() const { return health > 0; }
     void attack();
     virtual void move(const Location& amount = {});
 

@@ -18,7 +18,6 @@ int main(int argc, char* argv[])
     std::vector<Player*> players = std::vector<Player*>(NUM_PLAYERS);
     for (int i = 0; i < NUM_PLAYERS; ++i)
     {
-        std::cout << "Creating player #" << i + 1 << std::endl;
         players[i] = generateRandomPlayer(i + 1);
     }
 

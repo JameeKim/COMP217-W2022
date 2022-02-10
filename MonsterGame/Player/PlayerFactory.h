@@ -9,4 +9,7 @@
 
 class Player;
 
+/**
+ * Create an instance of a random Player subclass with random health and mana
+ */
 Player* generateRandomPlayer(int id);

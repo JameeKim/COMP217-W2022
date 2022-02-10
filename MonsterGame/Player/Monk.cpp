@@ -22,12 +22,12 @@ Monk::Monk(
         std::move(weapons),
         location)
 {
-    this->playerType = "Monk";
+    playerType = "Monk";
 }
 
 void Monk::move(const Location& amount)
 {
     Player::move(amount);
-    this->printTypeAndId();
+    printTypeAndId();
     std::cout << " moves as a spirit" << std::endl;
 }

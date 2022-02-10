@@ -22,12 +22,12 @@ Witch::Witch(
         std::move(weapons),
         location)
 {
-    this->playerType = "Witch";
+    playerType = "Witch";
 }
 
 void Witch::move(const Location& amount)
 {
     Player::move(amount);
-    this->printTypeAndId();
+    printTypeAndId();
     std::cout << " flies" << std::endl;
 }
