@@ -37,17 +37,20 @@ void Player::attack() const
 {
     printTypeAndId();
     std::cout << " attempts an attack (has " << weapons.size() << " weapons)"
-        << std::endl << "  ";
+        << " - ";
 
     if (weapons.empty())
     {
         actionWhenNoWeapon();
-        return;
+    }
+    else
+    {
+        // the check for ammo is done in Weapon::fire so that it can display
+        // appropriate messages depending on its type
+        weapons.front()->fire();
     }
 
-    // the check for ammo is done in Weapon::fire so that it can display
-    // appropriate messages depending on its type
-    weapons.front()->fire();
+    std::cout << std::endl;
 }
 
 void Player::move(const Location& amount)

@@ -33,5 +33,5 @@ void Monk::move(const Location& amount)
 void Monk::actionWhenNoWeapon() const
 {
     printTypeAndId();
-    std::cout << " hides like a wind" << std::endl;
+    std::cout << " hides like a wind";
 }

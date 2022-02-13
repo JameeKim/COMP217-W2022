@@ -11,7 +11,7 @@
 #include "Player/Player.h"
 #include "Player/PlayerFactory.h"
 
-constexpr size_t NUM_PLAYERS = 10;
+constexpr size_t NUM_PLAYERS = 100;
 
 int main(int argc, char* argv[])
 {

@@ -33,5 +33,5 @@ void Queen::move(const Location& amount)
 void Queen::actionWhenNoWeapon() const
 {
     printTypeAndId();
-    std::cout << " prepares to guard oneself" << std::endl;
+    std::cout << " prepares to guard oneself";
 }

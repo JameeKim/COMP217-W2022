@@ -13,9 +13,12 @@
 #include "Player.h"
 #include "Queen.h"
 #include "Witch.h"
+#include "Weapon/Broom.h"
 #include "Weapon/EnergyOrb.h"
+#include "Weapon/LaserGun.h"
 #include "Weapon/MagicWand.h"
 #include "Weapon/RoyalGun.h"
+#include "Weapon/RustySword.h"
 
 /**
  * Generate a random integer in the range of [min, max) using a randomly
@@ -76,14 +79,26 @@ typedef Player* (*player_factory)(int id, int health, int mana);
     }
 
 // define weapons
-WEAPON_CREATOR(RoyalGun, 6, 2);
-WEAPON_CREATOR(MagicWand, 3, 3);
+WEAPON_CREATOR(RustySword, 2, 1);
+WEAPON_CREATOR(RoyalGun, 6, 4);
+WEAPON_CREATOR(MagicWand, 4, 5);
+WEAPON_CREATOR(Broom, 2, 7);
 WEAPON_CREATOR(EnergyOrb, 1, 8);
+WEAPON_CREATOR(LaserGun, 20, 3);
 
 // define player types with available weapons
-PLAYER_CREATOR(Queen, &addRoyalGun);
-PLAYER_CREATOR(Witch, &addMagicWand);
-PLAYER_CREATOR(Monk, &addEnergyOrb);
+// items are repeated to provide better probability for each weapon type
+PLAYER_CREATOR(Queen, &addRustySword, &addRoyalGun, &addRoyalGun, &addRoyalGun);
+PLAYER_CREATOR(
+    Witch,
+    &addRustySword,
+    &addMagicWand,
+    &addBroom);
+PLAYER_CREATOR(
+    Monk,
+    &addRustySword,
+    &addEnergyOrb,
+    &addLaserGun);
 
 /**
  * List of functions that can create a player object

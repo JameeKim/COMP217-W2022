@@ -33,5 +33,5 @@ void Witch::move(const Location& amount)
 void Witch::actionWhenNoWeapon() const
 {
     printTypeAndId();
-    std::cout << " goes poof and disappears" << std::endl;
+    std::cout << " goes poof and disappears";
 }

@@ -51,3 +51,18 @@ public:
 protected:
     void printName() const;
 };
+
+#define WEAPON_FIRE_DEFINE_HELPER(WeaponType, attackAction, outOfAmmoAction) \
+    void WeaponType::fire() \
+    { \
+        printName(); \
+        if (hasAmmo()) \
+        { \
+            currentAmmo -= 1; \
+            std::cout << " " << attackAction; \
+        } \
+        else \
+        { \
+            std::cout << " " << outOfAmmoAction; \
+        } \
+    }

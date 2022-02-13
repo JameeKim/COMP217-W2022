@@ -9,13 +9,10 @@
 
 #include "Weapon.h"
 
-/**
- * A magic wand which requires deep knowledge and skill in magic
- */
-class MagicWand : public Weapon
+class LaserGun : public Weapon
 {
 public:
-    MagicWand(int maxAmmo, int currentAmmo, int damage);
+    LaserGun(int maxAmmo, int currentAmmo, int damage);
 
     void fire() override;
 };

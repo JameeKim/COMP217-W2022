@@ -14,17 +14,4 @@ MagicWand::MagicWand(const int maxAmmo, const int currentAmmo, const int damage)
 {
 }
 
-void MagicWand::fire()
-{
-    printName();
-
-    if (hasAmmo())
-    {
-        currentAmmo -= 1;
-        std::cout << " emits a magic beam" << std::endl;
-    }
-    else
-    {
-        std::cout << " is out of charges" << std::endl;
-    }
-}
+WEAPON_FIRE_DEFINE_HELPER(MagicWand, "emits a magic beam", "is out of charges");

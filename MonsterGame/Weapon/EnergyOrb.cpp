@@ -9,22 +9,9 @@
 
 #include <iostream>
 
-EnergyOrb::EnergyOrb(int maxAmmo, int currentAmmo, int damage)
+EnergyOrb::EnergyOrb(const int maxAmmo, const int currentAmmo, const int damage)
     : Weapon("Energy Orb", maxAmmo, currentAmmo, damage)
 {
 }
 
-void EnergyOrb::fire()
-{
-    printName();
-
-    if (hasAmmo())
-    {
-        currentAmmo -= 1;
-        std::cout << " is thrown" << std::endl;
-    }
-    else
-    {
-        std::cout << " is already exhausted" << std::endl;
-    }
-}
+WEAPON_FIRE_DEFINE_HELPER(EnergyOrb, "is thrown", "is already exhausted");

@@ -9,6 +9,9 @@
 
 #include "Weapon.h"
 
+/**
+ * A powerful energy orb
+ */
 class EnergyOrb : public Weapon
 {
 public:

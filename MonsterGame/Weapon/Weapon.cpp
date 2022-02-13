@@ -21,20 +21,7 @@ Weapon::Weapon(
 {
 }
 
-void Weapon::fire()
-{
-    printName();
-
-    if (hasAmmo())
-    {
-        currentAmmo -= 1;
-        std::cout << " is fired" << std::endl;
-    }
-    else
-    {
-        std::cout << " is out of ammo" << std::endl;
-    }
-}
+WEAPON_FIRE_DEFINE_HELPER(Weapon, "is fired", "is out of ammo");
 
 void Weapon::reload()
 {
