@@ -20,6 +20,10 @@ Team::Team(const size_t size): size(size)
     }
 }
 
+Team::Team(Player* players[], const size_t size): players(players), size(size)
+{
+}
+
 Team::~Team()
 {
     for (int i = 0; i < size; i++)

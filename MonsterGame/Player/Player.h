@@ -30,7 +30,6 @@ private:
     int mana;
 
     std::vector<Weapon*> weapons;
-    Weapon* currentWeapon;
 
 public:
     Player(
@@ -47,7 +46,6 @@ public:
     int getHealth() const { return health; }
     int getMana() const { return mana; }
     const std::vector<Weapon*>& getWeapons() const { return weapons; }
-    Weapon* getCurrentWeapon() const { return currentWeapon; }
 
     // computed value getters
     bool isAlive() const { return health > 0; }
@@ -77,7 +75,7 @@ protected:
 
 private:
     /**
-     * Check if the given weapon is owned by the player
+     * Get the position of the given weapon in the list of weapons
      */
-    bool hasWeapon(const Weapon* weapon) const;
+    size_t weaponPosition(const Weapon* weapon) const;
 };

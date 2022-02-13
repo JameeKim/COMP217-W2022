@@ -17,6 +17,7 @@ private:
 
 public:
     Team(size_t size);
+    Team(Player* players[], size_t size);
     ~Team();
 
     void attack() const;

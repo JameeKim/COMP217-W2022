@@ -20,9 +20,9 @@ Player::Player(
       id(id),
       location(location),
       health(health),
-      mana(mana),
-      currentWeapon(nullptr)
+      mana(mana)
 {
+    weapons.reserve(3);
 }
 
 Player::~Player()
@@ -38,7 +38,7 @@ void Player::attack() const
     printTypeAndId();
     std::cout << " attempts an attack" << std::endl << "  ";
 
-    if (!currentWeapon)
+    if (weapons.empty())
     {
         std::cout << "Fail: no weapon found" << std::endl << "  ";
         actionWhenNoWeapon();
@@ -46,12 +46,12 @@ void Player::attack() const
     }
 
     std::cout << "Currently holding ";
-    currentWeapon->printName();
+    weapons.front()->printName();
     std::cout << std::endl << "  ";
 
     // the check for ammo is done in Weapon::fire so that it can display
     // appropriate messages depending on its type
-    currentWeapon->fire();
+    weapons.front()->fire();
 }
 
 void Player::move(const Location& amount)
@@ -61,26 +61,33 @@ void Player::move(const Location& amount)
 
 void Player::addWeapon(Weapon* weapon)
 {
-    weapons.push_back(weapon);
-
-    // set the weapon as active if the player didn't have any before
-    if (weapons.size() == 1)
+    // don't add if the player already has 3
+    if (weapons.size() >= 3)
     {
-        currentWeapon = weapon;
+        std::cout << "Cannot add more weapons to ";
+        printTypeAndId();
+        std::cout << ": already has " << weapons.size() << std::endl;
+        return;
     }
+
+    weapons.push_back(weapon);
 }
 
 Weapon* Player::swapWeapon(Weapon* weapon)
 {
-    // do nothing if a weapon is given but not found
-    if (weapon && !hasWeapon(weapon))
+    if (!weapon || weapons.size() <= 0)
     {
         return nullptr;
     }
 
-    // swap the weapons
-    Weapon* previousWeapon = currentWeapon;
-    currentWeapon = weapon;
+    const size_t idx = weaponPosition(weapon);
+    if (idx >= weapons.size())
+    {
+        return nullptr;
+    }
+
+    Weapon* previousWeapon = weapons[0];
+    std::swap(weapons[0], weapons[idx]);
     return previousWeapon;
 }
 
@@ -89,8 +96,8 @@ void Player::printTypeAndId() const
     std::cout << playerType << " #" << id;
 }
 
-bool Player::hasWeapon(const Weapon* weapon) const
+size_t Player::weaponPosition(const Weapon* weapon) const
 {
-    const auto it = find(weapons.begin(), weapons.end(), weapon);
-    return it != weapons.end();
+    const auto it = std::find(weapons.begin(), weapons.end(), weapon);
+    return std::distance(weapons.begin(), it);
 }
