@@ -10,8 +10,18 @@
 #include <iostream>
 
 LaserGun::LaserGun(const int maxAmmo, const int currentAmmo, const int damage)
-    : Weapon("Laser Gun", maxAmmo, currentAmmo, damage)
+    : Weapon(maxAmmo, currentAmmo, damage)
 {
+}
+
+const char* LaserGun::getName() const
+{
+    return "Laser Gun";
+}
+
+const char* LaserGun::getIcon() const
+{
+    return "🕶️";
 }
 
 WEAPON_FIRE_DEFINE_HELPER(LaserGun, "goes pew pew", "ran out of battery power");

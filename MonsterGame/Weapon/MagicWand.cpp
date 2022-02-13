@@ -10,8 +10,18 @@
 #include <iostream>
 
 MagicWand::MagicWand(const int maxAmmo, const int currentAmmo, const int damage)
-    : Weapon("Magic Wand", maxAmmo, currentAmmo, damage)
+    : Weapon(maxAmmo, currentAmmo, damage)
 {
+}
+
+const char* MagicWand::getName() const
+{
+    return "Magic Wand";
+}
+
+const char* MagicWand::getIcon() const
+{
+    return "🍭";
 }
 
 WEAPON_FIRE_DEFINE_HELPER(MagicWand, "emits a magic beam", "is out of charges");

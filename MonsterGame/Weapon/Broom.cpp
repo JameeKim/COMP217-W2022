@@ -10,8 +10,18 @@
 #include <iostream>
 
 Broom::Broom(const int maxAmmo, const int currentAmmo, const int damage)
-    : Weapon("Broom", maxAmmo, currentAmmo, damage)
+    : Weapon(maxAmmo, currentAmmo, damage)
 {
+}
+
+const char* Broom::getName() const
+{
+    return "Broom";
+}
+
+const char* Broom::getIcon() const
+{
+    return "🧹";
 }
 
 WEAPON_FIRE_DEFINE_HELPER(Broom, "sweeps the area", "needs charge");

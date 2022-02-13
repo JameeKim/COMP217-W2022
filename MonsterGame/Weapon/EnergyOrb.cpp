@@ -10,8 +10,18 @@
 #include <iostream>
 
 EnergyOrb::EnergyOrb(const int maxAmmo, const int currentAmmo, const int damage)
-    : Weapon("Energy Orb", maxAmmo, currentAmmo, damage)
+    : Weapon(maxAmmo, currentAmmo, damage)
 {
+}
+
+const char* EnergyOrb::getName() const
+{
+    return "Energy Orb";
+}
+
+const char* EnergyOrb::getIcon() const
+{
+    return "🔮";
 }
 
 WEAPON_FIRE_DEFINE_HELPER(EnergyOrb, "is thrown", "is already exhausted");

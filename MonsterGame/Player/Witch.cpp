@@ -20,7 +20,16 @@ Witch::Witch(
         mana,
         location)
 {
-    playerType = "Witch";
+}
+
+const char* Witch::getPlayerType() const
+{
+    return "Witch";
+}
+
+const char* Witch::getIcon() const
+{
+    return "🧙";
 }
 
 void Witch::move(const Location& amount)
@@ -33,5 +42,5 @@ void Witch::move(const Location& amount)
 void Witch::actionWhenNoWeapon() const
 {
     printTypeAndId();
-    std::cout << " goes poof and disappears";
+    std::cout << " goes poof and disappears ✨";
 }

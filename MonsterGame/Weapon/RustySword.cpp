@@ -13,8 +13,18 @@ RustySword::RustySword(
     const int maxAmmo,
     const int currentAmmo,
     const int damage)
-    : Weapon("Rusty Sword", maxAmmo, currentAmmo, damage)
+    : Weapon(maxAmmo, currentAmmo, damage)
 {
+}
+
+const char* RustySword::getName() const
+{
+    return "Rusty Sword";
+}
+
+const char* RustySword::getIcon() const
+{
+    return "🗡️";
 }
 
 WEAPON_FIRE_DEFINE_HELPER(

@@ -19,6 +19,9 @@ public:
         const Location& location = {});
     ~Queen() override {}
 
+    const char* getPlayerType() const override;
+    const char* getIcon() const override;
+
     void move(const Location& amount = {}) override;
 
 protected:

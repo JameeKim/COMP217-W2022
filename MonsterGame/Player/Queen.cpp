@@ -20,7 +20,16 @@ Queen::Queen(
         mana,
         location)
 {
-    playerType = "Queen";
+}
+
+const char* Queen::getPlayerType() const
+{
+    return "Queen";
+}
+
+const char* Queen::getIcon() const
+{
+    return "👑";
 }
 
 void Queen::move(const Location& amount)
@@ -33,5 +42,5 @@ void Queen::move(const Location& amount)
 void Queen::actionWhenNoWeapon() const
 {
     printTypeAndId();
-    std::cout << " prepares to guard oneself";
+    std::cout << " prepares to guard oneself 🛡️";
 }

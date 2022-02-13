@@ -20,7 +20,16 @@ Monk::Monk(
         mana,
         location)
 {
-    playerType = "Monk";
+}
+
+const char* Monk::getPlayerType() const
+{
+    return "Monk";
+}
+
+const char* Monk::getIcon() const
+{
+    return "🧘";
 }
 
 void Monk::move(const Location& amount)
@@ -33,5 +42,5 @@ void Monk::move(const Location& amount)
 void Monk::actionWhenNoWeapon() const
 {
     printTypeAndId();
-    std::cout << " hides like a wind";
+    std::cout << " hides like a wind 💨";
 }

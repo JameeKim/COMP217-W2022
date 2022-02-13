@@ -7,7 +7,6 @@
 
 #pragma once
 
-#include <string>
 #include <vector>
 
 #include "GameUtilities.h"
@@ -19,9 +18,6 @@ class Weapon;
  */
 class Player
 {
-protected:
-    std::string playerType;
-
 private:
     const int id;
     Location location;
@@ -40,7 +36,8 @@ public:
     virtual ~Player() = 0;
 
     // getters
-    const std::string& getPlayerType() const { return playerType; }
+    virtual const char* getPlayerType() const;
+    virtual const char* getIcon() const;
     int getId() const { return id; }
     const Location& getLocation() const { return location; }
     int getHealth() const { return health; }

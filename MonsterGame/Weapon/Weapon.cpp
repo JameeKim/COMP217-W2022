@@ -9,16 +9,27 @@
 
 #include <iostream>
 
+const char* const Weapon::success = "✔️";
+const char* const Weapon::failure = "❌";
+
 Weapon::Weapon(
-    std::string name,
     const int maxAmmo,
     const int currentAmmo,
     const int damage)
-    : name(std::move(name)),
-      maxAmmo(maxAmmo),
+    : maxAmmo(maxAmmo),
       currentAmmo(currentAmmo),
       damage(damage)
 {
+}
+
+const char* Weapon::getName() const
+{
+    return "Weapon";
+}
+
+const char* Weapon::getIcon() const
+{
+    return "⚔️";
 }
 
 WEAPON_FIRE_DEFINE_HELPER(Weapon, "is fired", "is out of ammo");
@@ -32,5 +43,5 @@ void Weapon::reload()
 
 void Weapon::printName() const
 {
-    std::cout << "Weapon \"" << name << "\"";
+    std::cout << getName() << " " << getIcon();
 }

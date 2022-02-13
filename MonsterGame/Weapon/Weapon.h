@@ -16,8 +16,9 @@ class Weapon
 {
     friend class Player;
 
-private:
-    std::string name;
+public:
+    static const char* const success;
+    static const char* const failure;
 
 protected:
     int maxAmmo;
@@ -25,12 +26,13 @@ protected:
     int damage;
 
 public:
-    Weapon(std::string name, int maxAmmo, int currentAmmo, int damage);
+    Weapon(int maxAmmo, int currentAmmo, int damage);
     virtual ~Weapon() = default;
 
     // getters
 
-    const std::string& getName() const { return name; }
+    virtual const char* getName() const;
+    virtual const char* getIcon() const;
     int getMaxAmmo() const { return maxAmmo; }
     int getCurrentAmmo() const { return currentAmmo; }
     int getDamage() const { return damage; }
@@ -56,13 +58,14 @@ protected:
     void WeaponType::fire() \
     { \
         printName(); \
+        std::cout << " "; \
         if (hasAmmo()) \
         { \
             currentAmmo -= 1; \
-            std::cout << " " << attackAction; \
+            std::cout << attackAction << " " << Weapon::success; \
         } \
         else \
         { \
-            std::cout << " " << outOfAmmoAction; \
+            std::cout << outOfAmmoAction << " " << Weapon::failure; \
         } \
     }

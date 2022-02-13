@@ -89,16 +89,8 @@ WEAPON_CREATOR(LaserGun, 20, 3);
 // define player types with available weapons
 // items are repeated to provide better probability for each weapon type
 PLAYER_CREATOR(Queen, &addRustySword, &addRoyalGun, &addRoyalGun, &addRoyalGun);
-PLAYER_CREATOR(
-    Witch,
-    &addRustySword,
-    &addMagicWand,
-    &addBroom);
-PLAYER_CREATOR(
-    Monk,
-    &addRustySword,
-    &addEnergyOrb,
-    &addLaserGun);
+PLAYER_CREATOR(Witch, &addRustySword, &addMagicWand, &addBroom);
+PLAYER_CREATOR(Monk, &addRustySword, &addEnergyOrb, &addLaserGun);
 
 /**
  * List of functions that can create a player object

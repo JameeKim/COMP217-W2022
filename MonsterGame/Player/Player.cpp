@@ -5,9 +5,10 @@
  * 301058465 Dohyun Kim
  */
 
-#include <iostream>
-
 #include "Player.h"
+
+#include <iomanip>
+#include <iostream>
 
 #include "Weapon/Weapon.h"
 
@@ -16,8 +17,7 @@ Player::Player(
     const int health,
     const int mana,
     const Location& location)
-    : playerType("Player"),
-      id(id),
+    : id(id),
       location(location),
       health(health),
       mana(mana)
@@ -33,11 +33,20 @@ Player::~Player()
     }
 }
 
+const char* Player::getPlayerType() const
+{
+    return "Player";
+}
+
+const char* Player::getIcon() const
+{
+    return "🧍";
+}
+
 void Player::attack() const
 {
     printTypeAndId();
-    std::cout << " attempts an attack (has " << weapons.size() << " weapons)"
-        << " - ";
+    std::cout << " has " << weapons.size() << " weapons: ";
 
     if (weapons.empty())
     {
@@ -92,7 +101,8 @@ Weapon* Player::swapWeapon(Weapon* weapon)
 
 void Player::printTypeAndId() const
 {
-    std::cout << playerType << " #" << id;
+    std::cout << getIcon() << "(" << std::setfill('0') << std::setw(3) << id
+        << ")";
 }
 
 size_t Player::weaponPosition(const Weapon* weapon) const

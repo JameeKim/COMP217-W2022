@@ -17,5 +17,8 @@ class RustySword : public Weapon
 public:
     RustySword(int maxAmmo, int currentAmmo, int damage);
 
+    const char* getName() const override;
+    const char* getIcon() const override;
+
     void fire() override;
 };

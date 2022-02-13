@@ -11,6 +11,16 @@ RoyalGun::RoyalGun(
     const int maxAmmo,
     const int currentAmmo,
     const int damage)
-    : Weapon("Royal Gun", maxAmmo, currentAmmo, damage)
+    : Weapon(maxAmmo, currentAmmo, damage)
 {
+}
+
+const char* RoyalGun::getName() const
+{
+    return "Royal Gun";
+}
+
+const char* RoyalGun::getIcon() const
+{
+    return "🔫";
 }
