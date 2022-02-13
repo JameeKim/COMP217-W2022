@@ -36,18 +36,14 @@ Player::~Player()
 void Player::attack() const
 {
     printTypeAndId();
-    std::cout << " attempts an attack" << std::endl << "  ";
+    std::cout << " attempts an attack (has " << weapons.size() << " weapons)"
+        << std::endl << "  ";
 
     if (weapons.empty())
     {
-        std::cout << "Fail: no weapon found" << std::endl << "  ";
         actionWhenNoWeapon();
         return;
     }
-
-    std::cout << "Currently holding ";
-    weapons.front()->printName();
-    std::cout << std::endl << "  ";
 
     // the check for ammo is done in Weapon::fire so that it can display
     // appropriate messages depending on its type

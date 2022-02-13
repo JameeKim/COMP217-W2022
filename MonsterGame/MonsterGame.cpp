@@ -16,8 +16,10 @@ constexpr size_t NUM_PLAYERS = 10;
 int main(int argc, char* argv[])
 {
     std::vector<Player*> players = std::vector<Player*>(NUM_PLAYERS);
+
     for (int i = 0; i < NUM_PLAYERS; ++i)
     {
+        // weapons are added in this function from "Player/PlayerFactory.h"
         players[i] = generateRandomPlayer(i + 1);
     }
 

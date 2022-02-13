@@ -52,7 +52,9 @@ typedef Player* (*player_factory)(int id, int health, int mana);
 #define WEAPON_CREATOR(WType, MaxAmmo, Damage) \
     void add##WType(Player* player) \
     { \
-        player->addWeapon(new WType(MaxAmmo, randomInt(0, MaxAmmo), Damage)); \
+        player->addWeapon( \
+            new WType(MaxAmmo, randomInt(0, MaxAmmo + 1), Damage) \
+        ); \
     }
 
 /**
@@ -63,11 +65,12 @@ typedef Player* (*player_factory)(int id, int health, int mana);
     Player* make##PType(const int id, const int health, const int mana) \
     { \
         PType* player = new PType(id, health, mana); \
-        /* Add a weapon 80% of the time */ \
-        if (randomInt(0, 5) > 0) \
-        { \
+        /* Add 0, 1, 2, or 3 weapons */ \
+        int numWeapons = randomInt(0, 4); \
+        while (numWeapons > 0) { \
             int weaponIdx = randomInt(0, PType##_WEAPONS_SIZE); \
             PType##_WEAPONS[weaponIdx](player); \
+            numWeapons--; \
         } \
         return player; \
     }
