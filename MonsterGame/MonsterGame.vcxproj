@@ -247,6 +247,7 @@
     <ClCompile Include="Weapon\RoyalGun.cpp" />
     <ClCompile Include="Weapon\Weapon.cpp" />
     <ClCompile Include="Week05.cpp" />
+    <ClCompile Include="Lab04.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Daemon\Daemon.h" />
@@ -267,6 +268,7 @@
     <ClInclude Include="Weapon\RoyalGun.h" />
     <ClInclude Include="Weapon\Weapon.h" />
     <ClInclude Include="Week05.h" />
+    <ClInclude Include="Lab04.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
