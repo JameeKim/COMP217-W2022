@@ -30,3 +30,9 @@ struct Location
         return *this;
     }
 };
+
+/// Save the current game state with the given save name
+bool saveGame(const char* saveName);
+
+/// Load the saved game state with the given save name
+bool loadGame(const char* saveName);

@@ -5,9 +5,9 @@
  * 301058465 Dohyun Kim
  */
 
-#include "Lab04.h"
+#include "Lab05.h"
 
 int main(int argc, char* argv[])
 {
-    lab04();
+    lab05();
 }

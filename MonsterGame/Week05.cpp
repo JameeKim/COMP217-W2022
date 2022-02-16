@@ -61,7 +61,8 @@ void fileCursor()
     const std::streampos end = inputFile.tellg();
 
     // position2 - position1 = length of the file
-    std::cout << "Number of characters in the file: " << end - begin << std::endl;
+    std::cout << "Number of characters in the file: " << end - begin
+        << std::endl;
 }
 
 void writeBlock()
