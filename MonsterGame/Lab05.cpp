@@ -7,7 +7,6 @@
 
 #include "Lab05.h"
 
-#include <fstream>
 #include <iostream>
 
 #include "GameUtilities.h"
@@ -16,6 +15,14 @@
 
 void lab05()
 {
-    GameState::player = new Witch(123, 20, 15, { -2, 1, 5 });
-    saveGame("gameData.txt");
+    Player* p1 = new Witch(123, 20, 15, Location(-2, 1, 5));
+    GameState::player = p1;
+
+    std::cout << "Save game: " << saveGame("gameData.txt") << std::endl;
+    GameState::player = nullptr;
+
+    std::cout << "Load game: " << loadGame("gameData.txt") << std::endl;
+    const Player* p2 = GameState::player;
+    std::cout << "Player type: " << p2->getPlayerType() << std::endl;
+    std::cout << "Player ID: " << p2->getId();
 }
