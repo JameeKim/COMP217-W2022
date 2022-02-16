@@ -7,12 +7,17 @@
 
 #pragma once
 
+#include <string>
+
 class Player;
 
 /// Game state
 class GameState
 {
 public:
+    /// Name of the save; empty string if not set
+    static std::string saveName;
+
     /// The player
     static Player* player;
 };

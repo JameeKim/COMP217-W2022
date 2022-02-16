@@ -29,11 +29,11 @@ bool saveGame(const char* saveName)
 
     try
     {
-        outSaves.open(saveName);
+        outSaves.open(GAME_SAVE_FILE);
     }
     catch (ofstream::failure& error)
     {
-        cerr << "Failed to open save file at " << saveName << endl;
+        cerr << "Failed to open save file at " << GAME_SAVE_FILE << endl;
         cerr << error.what() << endl;
         return false;
     }
@@ -43,19 +43,17 @@ bool saveGame(const char* saveName)
         outSaves << saveName << EOL;
         if (const Player* player = GameState::player)
         {
-            outSaves << player->getId() << EOL;
-            outSaves << player->getPlayerType() << EOL;
-            outSaves << player->getLocation().x << EOL;
-            outSaves << player->getLocation().y << EOL;
-            outSaves << player->getLocation().z << EOL;
-            outSaves << player->getHealth() << EOL;
-            outSaves << player->getMana() << EOL;
+            outSaves << player->getId() << EOL
+                << player->getPlayerType() << EOL
+                << player->getLocation() << EOL
+                << player->getHealth() << EOL
+                << player->getMana() << EOL;
         }
-        outSaves.flush();
+        outSaves << flush;
     }
     catch (ofstream::failure& error)
     {
-        cerr << "Failed to write to save file at " << saveName << endl;
+        cerr << "Failed to write to save file at " << GAME_SAVE_FILE << endl;
         cerr << error.what() << endl;
         return false;
     }
@@ -70,44 +68,41 @@ bool loadGame(const char* saveName)
 
     try
     {
-        inSaves.open(saveName);
+        inSaves.open(GAME_SAVE_FILE);
     }
     catch (ifstream::failure& error)
     {
-        cerr << "Failed to open save file at " << saveName << endl;
+        cerr << "Failed to open save file at " << GAME_SAVE_FILE << endl;
         cerr << error.what() << endl;
         return false;
     }
 
-    string name, playerType;
+    string playerType;
     int id, health, mana;
     Location location;
 
     try
     {
+        string name;
         getline(inSaves, name);
-        inSaves >> id;
-        cout << "ID " << id << endl;
-        inSaves.ignore(numeric_limits<streamsize>::max(), EOL);
-        getline(inSaves, playerType);
-        cout << "Player type " << playerType << endl;
-        inSaves >> location.x;
-        inSaves.ignore(numeric_limits<streamsize>::max(), EOL);
-        inSaves >> location.y;
-        inSaves.ignore(numeric_limits<streamsize>::max(), EOL);
-        inSaves >> location.z;
-        inSaves.ignore(numeric_limits<streamsize>::max(), EOL);
-        cout << "Location " << location.x << " " << location.y << " " << location.z << endl;
-        inSaves >> health;
-        cout << "Health " << health << endl;
-        inSaves.ignore(numeric_limits<streamsize>::max(), EOL);
-        inSaves >> mana;
-        cout << "Mana " << mana << endl;
+
+        if (name != saveName)
+        {
+            cerr << "Cannot find save \"" << saveName << "\"" << endl;
+            return false;
+        }
+
+        inSaves >> id >> ws
+            >> playerType >> ws
+            >> location >> ws
+            >> health >> ws
+            >> mana >> ws;
+
         inSaves.close();
     }
     catch (ifstream::failure& error)
     {
-        cerr << "Failed to read save file at " << saveName << endl;
+        cerr << "Failed to read save file at " << GAME_SAVE_FILE << endl;
         cerr << error.what() << endl;
         return false;
     }

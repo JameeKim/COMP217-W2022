@@ -7,4 +7,6 @@
 
 #include "GameState.h"
 
+std::string GameState::saveName;
+
 Player* GameState::player;
