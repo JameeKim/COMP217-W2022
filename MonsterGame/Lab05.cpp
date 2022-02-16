@@ -15,14 +15,17 @@
 
 void lab05()
 {
-    Player* p1 = new Witch(123, 20, 15, Location(-2, 1, 5));
+    Player* p1 = new Witch(321, 20, 15, Location(-2, 1, 5));
     GameState::player = p1;
 
-    std::cout << "Save game: " << saveGame("gameData.txt") << std::endl;
+    std::cout << "Save game: " << saveGame("save1") << std::endl;
     GameState::player = nullptr;
 
-    std::cout << "Load game: " << loadGame("gameData.txt") << std::endl;
+    std::cout << "Load game: " << loadGame("save2") << std::endl;
     const Player* p2 = GameState::player;
-    std::cout << "Player type: " << p2->getPlayerType() << std::endl;
-    std::cout << "Player ID: " << p2->getId();
+    if (p2)
+    {
+        std::cout << "Player type: " << p2->getPlayerType() << std::endl;
+        std::cout << "Player ID: " << p2->getId();
+    }
 }
