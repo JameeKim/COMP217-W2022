@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "Q1Matrix.h"
+#include "Q2Compression.h"
 
 using namespace std;
 
@@ -22,6 +23,7 @@ void runTest(int testNumber, void (*testFunction)());
 int main(int argc, char* argv[])
 {
     runTest(1, q1::test);
+    runTest(2, q2::test);
     return 0;
 }
 
