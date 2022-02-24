@@ -37,7 +37,7 @@ WORD console::getCurrentTextAttributes()
     return bufferInfo.wAttributes;
 }
 
-void console::setTextAttributes(const WORD attrs)
+void console::setTextAttributes(const flag attrs)
 {
     if (!SetConsoleTextAttribute(handle(), attrs))
     {

@@ -66,7 +66,7 @@ void doTest(const char* input)
     namespace fmt = console::format;
 
     const string result = q2::compress(input);
-    const WORD textColor =
+    const console::flag textColor =
         result.length() < std::strlen(input) ? fmt::green : fmt::red;
 
     cout << color(textColor) << input << " (" << strlen(input) << ") => "
