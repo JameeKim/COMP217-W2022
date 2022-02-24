@@ -5,18 +5,20 @@
  * 301058465 Dohyun Kim
  */
 
+#include <functional>
 #include <iostream>
 
 #include "ConsoleUtils.h"
 #include "Q1Matrix.h"
 #include "Q2Compression.h"
+#include "Q3Palindrome.h"
 
 using namespace std;
 
 /**
  * Run the test for a question
  */
-void runTest(int testNumber, void (*testFunction)());
+void runTest(int testNumber, const function<void()>& testFunction);
 
 /**
  * The main application function
@@ -25,6 +27,7 @@ int main(int argc, char* argv[])
 {
     runTest(1, q1::test);
     runTest(2, q2::test);
+    runTest(3, q3::test);
     return 0;
 }
 
@@ -35,7 +38,7 @@ void printErr(const int testNumber, const char* type, const char* msg)
     cerr << msg << endl;
 }
 
-void runTest(const int testNumber, void (*testFunction)())
+void runTest(const int testNumber, const function<void()>& testFunction)
 {
     cout << endl << console::bold() << "-------- Test Question #" << testNumber
         << " --------" << endl << console::noBold();
