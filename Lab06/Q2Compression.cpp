@@ -11,6 +11,8 @@
 #include <map>
 #include <vector>
 
+#include "ConsoleUtils.h"
+
 using namespace std;
 
 void doTest(const char* input);
@@ -22,7 +24,7 @@ void q2::test()
     doTest("ddddllieeeecnnnssss");
 }
 
-std::string q2::compress(const char* input)
+string q2::compress(const char* input)
 {
     vector<pair<char, size_t>> charMap;
 
@@ -54,12 +56,19 @@ std::string q2::compress(const char* input)
 
 string q2::compress(const string& input)
 {
-    return compress(input.data());
+    return compress(input.c_str());
 }
 
 void doTest(const char* input)
 {
+    using console::color;
+    using console::noColor;
+    namespace fmt = console::format;
+
     const string result = q2::compress(input);
-    cout << input << " (" << strlen(input) << ") => " << result << " ("
-        << result.size() << ")" << endl;
+    const WORD textColor =
+        result.length() < std::strlen(input) ? fmt::green : fmt::red;
+
+    cout << color(textColor) << input << " (" << strlen(input) << ") => "
+        << result << " (" << result.size() << ")" << endl << noColor();
 }

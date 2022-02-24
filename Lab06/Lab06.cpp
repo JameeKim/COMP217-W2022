@@ -7,6 +7,7 @@
 
 #include <iostream>
 
+#include "ConsoleUtils.h"
 #include "Q1Matrix.h"
 #include "Q2Compression.h"
 
@@ -27,35 +28,36 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-void printErr(const int testNumber, const char* msg)
+void printErr(const int testNumber, const char* type, const char* msg)
 {
-    cerr << "Error while running test for question #" << testNumber << endl;
+    cout << endl;
+    cerr << type << " while running test for question #" << testNumber << endl;
     cerr << msg << endl;
 }
 
 void runTest(const int testNumber, void (*testFunction)())
 {
-    cout << endl;
-    cout << "------ Test Question #" << testNumber << " ------" << endl;
+    cout << endl << console::bold() << "-------- Test Question #" << testNumber
+        << " --------" << endl << console::noBold();
 
     try
     {
         testFunction();
     }
-    catch (const char* msg)
-    {
-        printErr(testNumber, msg);
-    }
     catch (const std::runtime_error& error)
     {
-        printErr(testNumber, error.what());
+        printErr(testNumber, "Runtime error", error.what());
+    }
+    catch (const std::logic_error& error)
+    {
+        printErr(testNumber, "Logic error", error.what());
     }
     catch (const std::exception& error)
     {
-        printErr(testNumber, error.what());
+        printErr(testNumber, "Exception", error.what());
     }
     catch (...)
     {
-        printErr(testNumber, "Unknown failure occurred");
+        printErr(testNumber, "Unknown error", "Unknown failure occurred");
     }
 }

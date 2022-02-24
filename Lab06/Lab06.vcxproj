@@ -154,11 +154,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConsoleUtils.cpp" />
     <ClCompile Include="Lab06.cpp" />
     <ClCompile Include="Q1Matrix.cpp" />
     <ClCompile Include="Q2Compression.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConsoleUtils.h" />
     <ClInclude Include="Q1Matrix.h" />
     <ClInclude Include="Q2Compression.h" />
   </ItemGroup>
