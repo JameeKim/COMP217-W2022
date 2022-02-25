@@ -159,12 +159,14 @@
     <ClCompile Include="Q1Matrix.cpp" />
     <ClCompile Include="Q2Compression.cpp" />
     <ClCompile Include="Q3Palindrome.cpp" />
+    <ClCompile Include="Q4Partition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleUtils.h" />
     <ClInclude Include="Q1Matrix.h" />
     <ClInclude Include="Q2Compression.h" />
     <ClInclude Include="Q3Palindrome.h" />
+    <ClInclude Include="Q4Partition.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

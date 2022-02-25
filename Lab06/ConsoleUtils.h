@@ -69,8 +69,8 @@ namespace console
             bg_strong = BACKGROUND_INTENSITY,
             bg = bg_white | bg_strong,
 
-            highlight = COMMON_LVB_REVERSE_VIDEO,
-            style_mask = highlight,
+            reverse = COMMON_LVB_REVERSE_VIDEO,
+            style_mask = reverse,
 
             all = fg | bg | style_mask,
             none = 0x0000,
@@ -132,6 +132,22 @@ namespace console
         inline TextFmt noColor()
         {
             return color(white);
+        }
+
+        /**
+         * Helper function to highlight the text by reversing fg and bg
+         */
+        inline TextFmt highlight()
+        {
+            return TextFmt(reverse, reverse);
+        }
+
+        /**
+         * Helper function to un-highlight the text
+         */
+        inline TextFmt noHighlight()
+        {
+            return TextFmt(none, reverse);
         }
     }
 }

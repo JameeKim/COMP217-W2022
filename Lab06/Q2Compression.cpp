@@ -8,7 +8,6 @@
 #include "Q2Compression.h"
 
 #include <iostream>
-#include <map>
 #include <vector>
 
 #include "ConsoleUtils.h"

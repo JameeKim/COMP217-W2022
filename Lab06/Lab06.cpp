@@ -12,6 +12,7 @@
 #include "Q1Matrix.h"
 #include "Q2Compression.h"
 #include "Q3Palindrome.h"
+#include "Q4Partition.h"
 
 using std::cout;
 using std::cerr;
@@ -31,6 +32,7 @@ int main(int argc, char* argv[])
     runTest(1, q1::test);
     runTest(2, q2::test);
     runTest(3, q3::test);
+    runTest(4, q4::test);
     return 0;
 }
 
