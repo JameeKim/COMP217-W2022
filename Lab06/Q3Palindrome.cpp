@@ -200,17 +200,14 @@ const char* isNot = "is not";
 
 void doTest(const bool expected, const char* input)
 {
-    using console::color;
-    using console::noColor;
-    using console::bold;
-    using console::noBold;
     namespace fmt = console::format;
 
     const bool result = isPalindromePermutation(input);
     const bool isCorrect = result == expected;
 
-    std::cout << color(isCorrect ? fmt::green : fmt::red) << bold()
-        << "[" << (isCorrect ? correct : incorrect) << "] " << noBold()
-        << noColor() << '"' << input << "\" " << bold() << (result ? is : isNot)
-        << noBold() << " a permutation of a palindrome" << std::endl;
+    std::cout << fmt::color(isCorrect ? fmt::green : fmt::red) << fmt::bold()
+        << "[" << (isCorrect ? correct : incorrect) << "] " << fmt::noBold()
+        << fmt::noColor() << '"' << input << "\" " << fmt::bold()
+        << (result ? is : isNot) << fmt::noBold()
+        << " a permutation of a palindrome" << std::endl;
 }

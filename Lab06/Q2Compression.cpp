@@ -61,14 +61,12 @@ string q2::compress(const string& input)
 
 void doTest(const char* input)
 {
-    using console::color;
-    using console::noColor;
     namespace fmt = console::format;
 
     const string result = q2::compress(input);
-    const console::flag textColor =
+    const fmt::flag textColor =
         result.length() < std::strlen(input) ? fmt::green : fmt::red;
 
-    cout << color(textColor) << input << " (" << strlen(input) << ") => "
-        << result << " (" << result.size() << ")" << endl << noColor();
+    cout << fmt::color(textColor) << input << " (" << strlen(input) << ") => "
+        << result << " (" << result.size() << ")" << endl << fmt::noColor();
 }

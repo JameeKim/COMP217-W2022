@@ -13,12 +13,15 @@
 #include "Q2Compression.h"
 #include "Q3Palindrome.h"
 
-using namespace std;
+using std::cout;
+using std::cerr;
+using std::endl;
+namespace fmt = console::format;
 
 /**
  * Run the test for a question
  */
-void runTest(int testNumber, const function<void()>& testFunction);
+void runTest(int testNumber, const std::function<void()>& testFunction);
 
 /**
  * The main application function
@@ -38,10 +41,10 @@ void printErr(const int testNumber, const char* type, const char* msg)
     cerr << msg << endl;
 }
 
-void runTest(const int testNumber, const function<void()>& testFunction)
+void runTest(const int testNumber, const std::function<void()>& testFunction)
 {
-    cout << endl << console::bold() << "-------- Test Question #" << testNumber
-        << " --------" << endl << console::noBold();
+    cout << endl << fmt::bold() << "-------- Test Question #" << testNumber
+        << " --------" << endl << fmt::noBold();
 
     try
     {

@@ -189,10 +189,10 @@ namespace q1
             for (const T& elem : row)
             {
                 if (elem == 0)
-                    oStream << console::bold();
+                    oStream << console::format::bold();
 
                 oStream << std::setw(matrix.printWidth()) << elem
-                    << console::noBold() << " ";
+                    << console::format::noBold() << " ";
             }
 
             oStream << "|" << std::endl;

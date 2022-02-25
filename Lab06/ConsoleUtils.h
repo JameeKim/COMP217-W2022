@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <functional>
 #include <ostream>
 #include <stdexcept>
 #include <Windows.h>
@@ -28,114 +29,109 @@ namespace console
         explicit ConsoleUtilsError(const char* msg) : runtime_error(msg) {}
     };
 
-    /**
-     * Type alias for text format attribute flags
-     */
-    using flag = WORD;
+    // Type alias for concise code
+    template <class C, class CT>
+    using os = std::basic_ostream<C, CT>;
 
     /**
      * Helper for setting text formats
      */
     namespace format
     {
-        // ReSharper disable CppInconsistentNaming
+        /**
+         * Type alias for text format attribute flags
+         */
+        using flag = WORD;
 
-        constexpr flag red = FOREGROUND_RED;
-        constexpr flag blue = FOREGROUND_BLUE;
-        constexpr flag green = FOREGROUND_GREEN;
-        constexpr flag white = red | blue | green;
-        constexpr flag strong = FOREGROUND_INTENSITY;
-        constexpr flag fg = white | strong;
+        /**
+         * Get current text attributes
+         */
+        flag getTextAttributes();
 
-        constexpr flag bg_red = BACKGROUND_RED;
-        constexpr flag bg_blue = BACKGROUND_BLUE;
-        constexpr flag bg_green = BACKGROUND_GREEN;
-        constexpr flag bg_white = bg_red | bg_blue | bg_green;
-        constexpr flag bg_strong = BACKGROUND_INTENSITY;
-        constexpr flag bg = bg_white | bg_strong;
+        /**
+         * Set text attributes
+         */
+        void setTextAttributes(flag attrs);
 
-        constexpr flag highlight = COMMON_LVB_REVERSE_VIDEO;
-        // constexpr flag underline = COMMON_LVB_UNDERSCORE; // doesn't work
-        constexpr flag style_mask = highlight;
+        enum flags : flag
+        {
+            red = FOREGROUND_RED,
+            blue = FOREGROUND_BLUE,
+            green = FOREGROUND_GREEN,
+            white = red | blue | green,
+            strong = FOREGROUND_INTENSITY,
+            fg = white | strong,
 
-        constexpr flag all = fg | bg | style_mask;
-        constexpr flag none = 0x0000;
-        constexpr flag pass = ~none;
+            bg_red = BACKGROUND_RED,
+            bg_blue = BACKGROUND_BLUE,
+            bg_green = BACKGROUND_GREEN,
+            bg_white = bg_red | bg_blue | bg_green,
+            bg_strong = BACKGROUND_INTENSITY,
+            bg = bg_white | bg_strong,
 
-        // ReSharper restore CppInconsistentNaming
-    }
+            highlight = COMMON_LVB_REVERSE_VIDEO,
+            style_mask = highlight,
 
-    // Type alias for concise code
-    template <class Elem, class Traits>
-    using os = std::basic_ostream<Elem, Traits>;
+            all = fg | bg | style_mask,
+            none = 0x0000,
+            pass = 0xFFFF,
+        };
 
-    /**
-     * IO manipulator for windows console colors
-     */
-    class TextFormatter
-    {
-    public:
-        explicit TextFormatter(const flag attrs, const flag mask)
-            : attrs(attrs & mask), mask(mask) {}
+        /**
+         * IO manipulator for windows console colors
+         */
+        class TextFmt
+        {
+        public:
+            explicit TextFmt(const flag attrs, const flag mask)
+                : attrs(attrs & mask), mask(mask) {}
 
-        template <class C, class CT>
-        friend os<C, CT>& operator<<(os<C, CT>& os, const TextFormatter& fmt);
+            /**
+             * Operator overloading for changing windows console colors
+             */
+            template <class C, class CT>
+            friend os<C, CT>& operator<<(os<C, CT>& os, const TextFmt& fmt)
+            {
+                const flag flags = ~fmt.mask & getTextAttributes() | fmt.attrs;
+                setTextAttributes(flags);
+                return os;
+            }
 
-    private:
-        flag attrs;
-        flag mask;
-    };
+        private:
+            flag attrs;
+            flag mask;
+        };
 
-    /**
-     * Helper function to intensify the foreground color
-     */
-    inline TextFormatter bold()
-    {
-        return TextFormatter(format::strong, format::strong);
-    }
+        /**
+         * Helper function to intensify the foreground color
+         */
+        inline TextFmt bold()
+        {
+            return TextFmt(strong, strong);
+        }
 
-    /**
-     * Helper function to reset bold
-     */
-    inline TextFormatter noBold()
-    {
-        return TextFormatter(format::none, format::strong);
-    }
+        /**
+         * Helper function to reset bold
+         */
+        inline TextFmt noBold()
+        {
+            return TextFmt(none, strong);
+        }
 
-    /**
-     * Helper function to set the color of the text
-     */
-    inline TextFormatter color(const flag c)
-    {
-        return TextFormatter(c, format::white);
-    }
+        /**
+         * Helper function to set the color of the text
+         */
+        inline TextFmt color(const flag c)
+        {
+            return TextFmt(c, white);
+        }
 
-    /**
-     * Helper function to revert the color of the text (to white)
-     */
-    inline TextFormatter noColor()
-    {
-        return color(format::white);
-    }
-
-    /**
-     * Get current text attributes
-     */
-    flag getCurrentTextAttributes();
-
-    /**
-     * Set text attributes
-     */
-    void setTextAttributes(flag attrs);
-
-    /**
-     * Operator overloading for changing windows console colors
-     */
-    template <class C, class CT>
-    os<C, CT>& operator<<(os<C, CT>& os, const TextFormatter& fmt)
-    {
-        const flag flags = ~fmt.mask & getCurrentTextAttributes() | fmt.attrs;
-        setTextAttributes(flags);
-        return os;
+        /**
+         * Helper function to revert the color of the text (to white)
+         */
+        inline TextFmt noColor()
+        {
+            return color(white);
+        }
     }
 }
