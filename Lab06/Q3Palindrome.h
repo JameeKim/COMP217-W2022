@@ -22,7 +22,7 @@ namespace q3
      *
      * Ignores any characters that are not alphabets or digits.
      *
-     * Complexity: O(n*log(n)) where n = (length of input string)
+     * Complexity: O(n) where n = (length of input string)
      */
     bool isPalindromePermutation(const char* input);
 
