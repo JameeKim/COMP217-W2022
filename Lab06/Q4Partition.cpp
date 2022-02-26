@@ -61,13 +61,13 @@ void printList(const T& part, const q4::list_t<T>& list, const Lt& lt)
         }
         else
         {
-            if (e == part) // ehhhhh whatever
+            if (!lt(part, e)) // if equal
                 cout << fmt::highlight();
 
             cout << fmt::color(afterPivot ? fmt::green : colorPivot) << e
                 << fmt::noColor();
 
-            if (e == part)
+            if (!lt(part, e)) // if equal
                 cout << fmt::noHighlight();
 
             afterPivot = true;
