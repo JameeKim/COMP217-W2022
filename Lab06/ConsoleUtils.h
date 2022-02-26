@@ -17,18 +17,6 @@
  */
 namespace console
 {
-    /**
-     * Runtime exception
-     */
-    class ConsoleUtilsError final : public std::runtime_error
-    {
-    public:
-        explicit ConsoleUtilsError(const std::string& msg)
-            : runtime_error(msg) {}
-
-        explicit ConsoleUtilsError(const char* msg) : runtime_error(msg) {}
-    };
-
     // Type alias for concise code
     template <class C, class CT>
     using os = std::basic_ostream<C, CT>;
@@ -45,13 +33,16 @@ namespace console
 
         /**
          * Get current text attributes
+         *
+         * The second part of the returned value is whether the process was
+         * successful.
          */
-        flag getTextAttributes();
+        std::pair<flag, bool> getTextAttributes();
 
         /**
          * Set text attributes
          */
-        void setTextAttributes(flag attrs);
+        bool setTextAttributes(flag attrs);
 
         enum flags : flag
         {
@@ -92,7 +83,12 @@ namespace console
             template <class C, class CT>
             friend os<C, CT>& operator<<(os<C, CT>& os, const TextFmt& fmt)
             {
-                const flag flags = ~fmt.mask & getTextAttributes() | fmt.attrs;
+                const auto attrs = getTextAttributes();
+
+                if (!attrs.second) // failed to get attributes
+                    return os; // do nothing
+
+                const flag flags = ~fmt.mask & attrs.first | fmt.attrs;
                 setTextAttributes(flags);
                 return os;
             }

@@ -47,11 +47,11 @@ void printErr(const int testNumber, const char* type, const char* msg)
 
 void runTest(const int testNumber, const std::function<void()>& testFunction)
 {
-    cout << endl << fmt::bold() << "-------- Test Question #" << testNumber
-        << " --------" << endl << fmt::noBold();
-
     try
     {
+        cout << endl << fmt::bold() << "-------- Test Question #" << testNumber
+            << " --------" << endl << fmt::noBold();
+
         testFunction();
     }
     catch (const std::runtime_error& error)
