@@ -9,7 +9,6 @@
 
 #include <functional>
 #include <ostream>
-#include <stdexcept>
 #include <Windows.h>
 
 /**
