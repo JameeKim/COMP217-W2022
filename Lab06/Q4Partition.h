@@ -45,7 +45,7 @@ namespace q4
 
         // Iterators to use in the next loop
         iter it = pivotNode; // base position that does not get removed
-        iter next = ++iter(it); // always the freshly next one
+        iter next = std::next(it); // always the freshly next one
         bool moved = false; // whether a change was made
 
         // Go through the list, starting from the node next to the pivot node,
@@ -64,7 +64,7 @@ namespace q4
             }
 
             // Compute the fresh next node
-            next = ++iter(it);
+            next = std::next(it);
         }
 
         return moved;

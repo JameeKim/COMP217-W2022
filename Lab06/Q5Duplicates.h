@@ -33,7 +33,7 @@ namespace q5
         std::unordered_set<T> elements;
 
         iter it = list.before_begin();
-        iter next = ++iter(it);
+        iter next = std::next(it);
 
         while (next != list.end())
         {
@@ -50,7 +50,7 @@ namespace q5
             }
 
             // Get a fresh pointer to the next element
-            next = ++iter(it);
+            next = std::next(it);
         }
 
         return removed;
