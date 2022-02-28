@@ -14,6 +14,7 @@
 #include "Q3Palindrome.h"
 #include "Q4Partition.h"
 #include "Q5Duplicates.h"
+#include "Q6Intersection.h"
 
 using std::cout;
 using std::cerr;
@@ -35,6 +36,7 @@ int main(int argc, char* argv[])
     runTest(3, q3::test);
     runTest(4, q4::test);
     runTest(5, q5::test);
+    runTest(6, q6::test);
     return 0;
 }
 

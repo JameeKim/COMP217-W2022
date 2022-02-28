@@ -161,14 +161,17 @@
     <ClCompile Include="Q3Palindrome.cpp" />
     <ClCompile Include="Q4Partition.cpp" />
     <ClCompile Include="Q5Duplicates.cpp" />
+    <ClCompile Include="Q6Intersection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleUtils.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Q1Matrix.h" />
     <ClInclude Include="Q2Compression.h" />
     <ClInclude Include="Q3Palindrome.h" />
     <ClInclude Include="Q4Partition.h" />
     <ClInclude Include="Q5Duplicates.h" />
+    <ClInclude Include="Q6Intersection.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
