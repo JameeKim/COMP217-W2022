@@ -16,6 +16,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonsterGame", "MonsterGame\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab06", "Lab06\Lab06.vcxproj", "{5663D84A-E625-463C-BA00-7A2C918598B6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MidTerm", "MidTerm\MidTerm.vcxproj", "{C123A05B-2BED-4085-A8D6-A6405F93E72C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -80,6 +82,14 @@ Global
 		{5663D84A-E625-463C-BA00-7A2C918598B6}.Release|Win32.Build.0 = Release|Win32
 		{5663D84A-E625-463C-BA00-7A2C918598B6}.Release|x64.ActiveCfg = Release|x64
 		{5663D84A-E625-463C-BA00-7A2C918598B6}.Release|x64.Build.0 = Release|x64
+		{C123A05B-2BED-4085-A8D6-A6405F93E72C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C123A05B-2BED-4085-A8D6-A6405F93E72C}.Debug|Win32.Build.0 = Debug|Win32
+		{C123A05B-2BED-4085-A8D6-A6405F93E72C}.Debug|x64.ActiveCfg = Debug|x64
+		{C123A05B-2BED-4085-A8D6-A6405F93E72C}.Debug|x64.Build.0 = Debug|x64
+		{C123A05B-2BED-4085-A8D6-A6405F93E72C}.Release|Win32.ActiveCfg = Release|Win32
+		{C123A05B-2BED-4085-A8D6-A6405F93E72C}.Release|Win32.Build.0 = Release|Win32
+		{C123A05B-2BED-4085-A8D6-A6405F93E72C}.Release|x64.ActiveCfg = Release|x64
+		{C123A05B-2BED-4085-A8D6-A6405F93E72C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
