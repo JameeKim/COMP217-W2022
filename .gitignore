@@ -1,3 +1,4 @@
+# Default UE4 project ignores
 Binaries
 DerivedDataCache
 Intermediate
@@ -13,3 +14,7 @@ Saved
 *.suo
 *.xcodeproj
 *.xcworkspace
+
+# Large assets
+Content/ParagonHowitzer
+Content/InfinityBladeAdversaries
